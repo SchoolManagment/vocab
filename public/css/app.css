@@ -1,0 +1,119 @@
+/* a, a:hover {
+    color: green;
+    text-decoration: none;
+    text-transform: uppercase;
+}
+a:hover {
+    text-decoration: underline;
+}
+
+nav > a {
+    margin-right: 3px;
+    padding-right: 3px;
+    border-right: 1px solid black;
+}
+
+nav > div > a {
+    margin-right: 0;
+    padding-right: 0;
+    border-right: 0;
+
+    margin-left: 3px;
+    padding-left: 3px;
+    border-left: 1px solid black;
+}
+
+main {
+    align-self: center;
+    align-content: right;
+} */
+
+/* nav[aria-label="breadcrumb"]{
+    align-items: center;
+    justify-content: left;
+}
+nav[aria-label="breadcrumb"] ul li{
+    padding-inline-start: 0;
+}
+nav[aria-label="breadcrumb"] ul li:not(:last-child) a::after{
+    padding-inline-start: 0.5rem;
+    content: "/";
+    color: var(--muted-color);
+} */
+
+.ml-auto {
+    margin-left: auto;
+}
+
+.ml-3 {
+    margin-left: 3px;
+}
+
+.text-red {
+    color: red !important;
+}
+.text-blue {
+    color: blue !important;
+}
+.text-green {
+    color: green !important;
+}
+
+.underlined {
+    text-decoration: underline;
+}
+
+nav a[aria-current="page"], nav a.active {
+    color: green;
+    text-decoration: underline;
+}
+nav a[aria-current="page"]:hover, nav a.active:hover {
+    color: darkgreen;
+    text-decoration: none;
+    /* padding: 0 8px;
+    border: 2px darkgreen solid;
+    border-radius: 0; */
+}
+
+/* nav:not([aria-label="breadcrumb"]) a:hover {
+    color: var(--primary);
+    text-decoration: none;
+    padding: 0 8px;
+    border: 2px var(--primary) solid;
+    border-radius: 0;
+} */
+
+.bg-red {
+    background-color: red;
+    color: white;
+    border-color: red;
+}
+.bg-red:hover[role="button"], .bg-red:hover button, .bg-red:hover a{
+    background-color: darkred;
+    border-color: darkred;
+}
+
+.bg-blue {
+    background-color: rgb(137, 137, 247) !important;
+    color: white;
+}
+
+.bg-green {
+    background-color: rgb(126, 196, 126) !important;
+    color: white;
+    border-color: rgb(126, 196, 126) ;
+}
+.bg-green:hover{
+    /* background-color: rgb(81, 182, 81);
+    border-color: rgb(81, 182, 81); */
+    background-color: green;
+    border-color: green;
+}
+
+/* .bg-white {
+    --background-color: white !important;
+} */
+
+.d-flex {
+    display: flex !important;
+}
