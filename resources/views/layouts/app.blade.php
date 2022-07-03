@@ -6,14 +6,13 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Vokabel Trainer - System edition</title>
 
-    <link rel="stylesheet" href="https://unpkg.com/@tabler/icons@latest/iconfont/tabler-icons.min.css">
-    <link rel="stylesheet" href="/css/app.css">
-    <link rel="stylesheet" href="https://unpkg.com/@picocss/pico@latest/css/pico.min.css">
-    <link rel="stylesheet" href="/css/notiflix.min.css">
+    <link rel="stylesheet" href="{{ asset('css/tabler-icons.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/pico.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/notiflix.min.css') }}">
 
     @livewireStyles
-    <script src="/js/notiflix.min.js"></script>
-    {{-- <script src="https://cdn.ckeditor.com/ckeditor5/34.1.0/decoupled-document/ckeditor.js"></script> --}}
+    <script src="{{ asset('js/notiflix.min.js') }}"></script>
 </head>
 <body>
     <div class="container">
@@ -34,14 +33,11 @@
                 <li><strong>Mailer</strong></li>
                 @auth
                     <li><a href="{{ route('home') }}" {!! $is_active(request()->routeIs('home')) !!}>Home</a></li>
-                    <li><a href="{{ route('book.index') }}" {!! $is_active(request()->routeIs('book.*')) !!}>Bücher</a></li>
-                    {{-- <li><a href="{{ route('user.index') }}" {!! $is_active(request()->routeIs('user.*')) !!}>Benutzer</a></li> --}}
-                @else
-                    <li><a href="{{ route('welcome') }}" {!! $is_active(request()->routeIs('welcome')) !!}>Home</a></li>
                 @endauth
             </ul>
             <ul>
                 @auth
+                    <li><a href="{{ route('profile') }}" {!! $is_active(request()->routeIs('profile')) !!}>Profile</a></li>
                     <li><a href="{{ route('logout') }}" {!! $is_active(request()->routeIs('logout')) !!}>Logout</a></li>
                 @else
                     <li><a href="{{ route('login') }}" {!! $is_active(request()->routeIs('login')) !!}>Login</a></li>
@@ -49,12 +45,6 @@
                 @endauth
             </ul>
         </nav>
-        {{-- <nav aria-label="breadcrumb">
-            <ul>
-                <li><a href="{{ route('home') }}">Home</a></li>
-                <li><a href="{{ route('home') }}">Home</a></li>
-            </ul>
-        </nav> --}}
     </div>
     <div class="container">
         @if ($message = session('error'))
