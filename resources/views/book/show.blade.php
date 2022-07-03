@@ -33,6 +33,8 @@
             </tr>
         </table>
 
+        <a href="{{ route('book.section.index', $book) }}" role="button">{{ ___('Sections') }}</a>
+
         <a href="{{ route('book.edit', $book) }}" role="button">Bearbeiten</a>
 
         <a href="{{ route('book.show', $book) }}/delete" class="bg-red" onclick="event.preventDefault();document.getElementById('delete-book').submit()" role="button" class="contrast">Löschen</a>

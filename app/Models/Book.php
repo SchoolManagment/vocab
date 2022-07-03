@@ -20,6 +20,10 @@ class Book extends Model
         return $this->belongsTo(User::class);
     }
 
+    public function sections(){
+        return $this->hasMany(Section::class);
+    }
+
     public function lang(string $param){
         $source = $this->{$param.'_lang'};
         return config('languages.'.$source, 'Lang Not Found');

@@ -23,7 +23,8 @@ Route::middleware('guest')->group(function(){
 
 Route::middleware('auth')->group(function () {
     Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-    
+
+    Route::resource('book.section', SectionController::class);
     Route::resource('book', BookController::class);
 
     Route::get('profile', [\App\Http\Controllers\ProfileController::class, 'show'])->name('profile');
