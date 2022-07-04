@@ -1,7 +1,7 @@
 <x-app-layout :back="route('book.section.word.index', compact('book', 'section'))">
     <h1>
         {{ __('Book') }} <a href="{{ route('book.show', $book) }}">{{ $book->name }}</a> -
-        {{ __('Section') }} <a href="{{ route('book.section.show', $book) }}">{{ $section->name }}</a> -
+        {{ __('Section') }} <a href="{{ route('book.section.show', compact('book', 'section')) }}">{{ $section->name }}</a> -
         {{ __('Word') }} {{ $word->word }}
     </h1>
 

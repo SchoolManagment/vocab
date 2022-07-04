@@ -25,6 +25,8 @@
             </tr>
         </table>
 
+        <a role="button" href="{{ route('book.ask', ['book' => $book, 'section' => $section]) }}" class="contrast">{{ __('Start Vocabulartest') }}</a>
+        <a href="{{ route('book.section.word.index', compact('book', 'section')) }}" role="button">{{ __('Words') }}</a>
         <a href="{{ route('book.section.edit', compact('book', 'section')) }}" role="button">{{ __('Edit') }}</a>
         <a href="{{ route('book.section.show', compact('book', 'section')) }}/delete" class="bg-red" onclick="event.preventDefault();document.getElementById('delete-section').submit()" role="button" class="contrast">{{ __('Delete') }}</a>
 

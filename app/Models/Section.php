@@ -22,4 +22,8 @@ class Section extends Model
     public function book(){
         return $this->belongsTo(Book::class);
     }
+
+    public function words(){
+        return $this->hasMany(Word::class);
+    }
 }

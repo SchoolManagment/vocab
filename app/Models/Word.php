@@ -37,6 +37,10 @@ class Word extends Model
         return $this->belongsTo(Book::class);
     }
 
+    public function score(){
+        return $this->hasOne(Score::class);
+    }
+
     public function arrayToList(array|string $data, string $seperator = ', '){
         $return = "";
 

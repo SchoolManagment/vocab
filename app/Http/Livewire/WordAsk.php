@@ -13,7 +13,7 @@ use Livewire\Component;
 
 class WordAsk extends Component
 {
-    public $words_to_ask = 10;
+    public $words_to_ask = 15;
 
     public $book;
     public $section;
@@ -50,6 +50,8 @@ class WordAsk extends Component
         if (count($words) == 0) {
             $words = Word::where('book_id', $this->book->id)->limit($this->words_to_ask)->inRandomOrder()->get();
         }
+
+        $this->words_to_ask = count($words);
 
         $old_words = $words;
         $words = [];

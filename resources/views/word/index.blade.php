@@ -1,12 +1,12 @@
 <x-app-layout :back="route('book.section.show', compact('book', 'section'))">
     <h1>
         {{ __('Book') }} <a href="{{ route('book.show', $book) }}">{{ $book->name }}</a> -
-        {{ __('Section') }} <a href="{{ route('book.section.show', $book) }}">{{ $section->name }}</a> -
+        {{ __('Section') }} <a href="{{ route('book.section.show', compact('book', 'section')) }}">{{ $section->name }}</a> -
         {{ __('Words') }}
     </h1>
 
     <article>
-        <a role="button" href="{{ route('book.ask', ['book' => $book, 'section' => $section]) }}" class="contrast">{{ __('Start Vocabulary Query') }}</a>
+        <a role="button" href="{{ route('book.ask', ['book' => $book, 'section' => $section]) }}" class="contrast">{{ __('Start Vocabulartest') }}</a>
         <a href="{{ route('book.section.word.create', compact('book', 'section')) }}" role="button">{{ __('Add Word') }}</a>
     </article>
 

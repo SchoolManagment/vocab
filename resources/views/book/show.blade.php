@@ -33,15 +33,42 @@
             </tr>
         </table>
 
-        <a href="{{ route('book.section.index', $book) }}" role="button">{{ ___('Sections') }}</a>
+        <a href="{{ route('book.ask', $book) }}" role="button" class="contrast">{{ __('Start Vocabulartest') }}</a>
 
-        <a href="{{ route('book.edit', $book) }}" role="button">Bearbeiten</a>
+        <a href="{{ route('book.section.index', $book) }}" role="button">{{ __('Sections') }}</a>
 
-        <a href="{{ route('book.show', $book) }}/delete" class="bg-red" onclick="event.preventDefault();document.getElementById('delete-book').submit()" role="button" class="contrast">Löschen</a>
+        <a href="{{ route('book.edit', $book) }}" role="button">{{ __('Edit') }}</a>
+
+        <a href="{{ route('book.show', $book) }}/delete" class="bg-red" onclick="event.preventDefault();document.getElementById('delete-book').submit()" role="button" class="contrast">{{ __('Delete') }}</a>
 
         <form id="delete-book" action="{{ route('book.destroy', $book) }}" method="post">
             @csrf
             @method('DELETE')
         </form>
+    </article>
+
+    <article>
+        <header>{{ __('Vocabulartest') }}</header>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>{{ __('Date') }}</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach($results as $result)
+                    <tr>
+                        <th>{{ $result->id }}</th>
+                        <td>{{ $result->day }}</td>
+                        <td>
+                            <a href="{{ route('result', $result->id) }}">{{ __('Show') }}</a>
+                        </td>
+                    </tr>
+                @endforeach
+            </tbody>
+        </table>
     </article>
 </x-app-layout>

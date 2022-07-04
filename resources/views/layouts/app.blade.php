@@ -1,14 +1,14 @@
 <!DOCTYPE html>
-<html lang="de" data-theme="light">
+<html lang="de" data-theme="dark">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Vokabel Trainer - System edition</title>
+    <title>{{ config('app.name', 'Vocab Trainer') }}</title>
 
     <link rel="stylesheet" href="{{ asset('css/tabler-icons.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/app.css') }}">
     <link rel="stylesheet" href="{{ asset('css/pico.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/app.css') }}">
     <link rel="stylesheet" href="{{ asset('css/notiflix.min.css') }}">
 
     @livewireStyles
@@ -26,19 +26,20 @@
                                 <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
                                 <path d="M9 11l-4 4l4 4m-4 -4h11a4 4 0 0 0 0 -8h-1"></path>
                             </svg>
-                            ZURÜCK
+                            {{ __('Back') }}
                         </a>
                     </li>
                 @endif
-                <li><strong>Mailer</strong></li>
+                <li><strong>{{ config('app.name', 'Vocab Trainer') }}</strong></li>
                 @auth
                     <li><a href="{{ route('home') }}" {!! $is_active(request()->routeIs('home')) !!}>Home</a></li>
+                    <li><a href="{{ route('book.index') }}" {!! $is_active(request()->routeIs('book.*')) !!}>Bücher</a></li>
                 @endauth
             </ul>
             <ul>
                 @auth
-                    <li><a href="{{ route('profile') }}" {!! $is_active(request()->routeIs('profile')) !!}>Profile</a></li>
-                    <li><a href="{{ route('logout') }}" {!! $is_active(request()->routeIs('logout')) !!}>Logout</a></li>
+                    <li><a href="{{ route('profile', ['back' => request()->routeIs('profile') ? request()->back : request()->fullUrl()]) }}" {!! $is_active(request()->routeIs('profile')) !!}>Profile</a></li>
+                    <li><a href="{{ route('logout', ['back' => request()->routeIs('logout') ? request()->back : request()->fullUrl()]) }}" {!! $is_active(request()->routeIs('logout')) !!}>Logout</a></li>
                 @else
                     <li><a href="{{ route('login') }}" {!! $is_active(request()->routeIs('login')) !!}>Login</a></li>
                     <li><a href="{{ route('register') }}" {!! $is_active(request()->routeIs('register')) !!}>Registrieren</a></li>

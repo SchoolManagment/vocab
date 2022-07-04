@@ -3,6 +3,7 @@
 use App\Http\Controllers\{
     BookController,
     SectionController,
+    AuthController,
     WordController
 };
 use App\Models\{Ask, Book};

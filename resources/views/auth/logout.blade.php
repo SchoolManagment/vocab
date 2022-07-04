@@ -7,6 +7,9 @@
             Willst du dich wirklcih ausloggen?
         </article>
 
-        <button type="submit">Ja, logge mich aus.</button>
+        <div class="gird">
+            <button type="submit">Ja, logge mich aus.</button>
+            <button type="button" onclick="window.location.href='{{ request()->back ?? route('home') }}';" class="secondary">Abbrechen</button>
+        </div>
     </form>
 </x-app-layout>

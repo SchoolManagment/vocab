@@ -1,8 +1,12 @@
-<x-app-layout :back="route('book.show', $book)">
-    <h1>Buch: {{ $book->name }} - Kapitel</h1>
+<x-app-layout :back="route('book.index')">
+    <h1>
+        {{ __('Book') }} <a href="{{ route('book.show', $book) }}">{{ $book->name }}</a> -
+        {{ __('Section') }}
+    </h1>
 
     <article>
-        <a role="button" href="{{ route('book.section.create', compact('book')) }}">Kapitel erstellen</a>
+        <a role="button" href="{{ route('book.ask', $book) }}" class="contrast">{{ __('Start Vocabulartest') }}</a>
+        <a role="button" href="{{ route('book.section.create', compact('book')) }}">{{ __('Create Section') }}</a>
     </article>
 
     <article>
@@ -11,7 +15,7 @@
                 <tr>
                     <th scope="col">#</th>
                     <th scope="col">{{ __('Name') }}</th>
-                    <th scope="col">{{ _('Wordcount') }}</th>
+                    <th scope="col">{{ __('Wordcount') }}</th>
                     <th scope="col"></th>
                 </tr>
             </thead>

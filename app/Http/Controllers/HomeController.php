@@ -24,6 +24,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $results = Ask::where('user_id', auth()->id())->with('book')->limit(10)->paginate(15);
+        return view('home', compact('results'));
     }
 }

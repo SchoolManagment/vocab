@@ -8,10 +8,4 @@
 
         <button type="submit">Login</button>
     </form>
-
-    <hr>
-
-    @env('local')
-        <x-login-link id="1" redirect-url="{{ route('home') }}" label="Login as User (ID: 1)" />
-    @endenv
 </x-app-layout>

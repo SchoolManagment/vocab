@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\{
+    Ask,
     Book
 };
 use Illuminate\Http\Request;
@@ -71,6 +72,7 @@ class BookController extends Controller
      */
     public function show(Book $book)
     {
+        $results = Ask::where('user_id', auth()->id())->where('book_id', $book->id)->get(['id', 'day']);
         return view('book.show', compact('book', 'results'));
     }
 
