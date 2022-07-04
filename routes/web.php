@@ -1,5 +1,10 @@
 <?php
 
+use App\Http\Controllers\{
+    BookController,
+    SectionController,
+    WordController
+};
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -24,6 +29,7 @@ Route::middleware('guest')->group(function(){
 Route::middleware('auth')->group(function () {
     Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
+    Route::resource('book.section.word', WordController::class)->except(['store', 'update']);
     Route::resource('book.section', SectionController::class);
     Route::resource('book', BookController::class);
 
