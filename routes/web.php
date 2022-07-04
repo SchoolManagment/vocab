@@ -5,6 +5,7 @@ use App\Http\Controllers\{
     SectionController,
     WordController
 };
+use App\Models\{Ask, Book};
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -28,6 +29,15 @@ Route::middleware('guest')->group(function(){
 
 Route::middleware('auth')->group(function () {
     Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+
+    Route::get('book/{book}/ask', function(Book $book){
+        return view('word.ask', compact('book'));
+    })->name('book.ask');
+
+    Route::get('result/{ask}', function(Ask $ask){
+        return view('results.show', compact('ask'));
+    })->name('result');
 
     Route::resource('book.section.word', WordController::class)->except(['store', 'update']);
     Route::resource('book.section', SectionController::class);
