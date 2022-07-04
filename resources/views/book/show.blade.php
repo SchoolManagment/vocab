@@ -33,7 +33,7 @@
             </tr>
         </table>
 
-        <a href="{{ route('book.ask', $book) }}" role="button" class="contrast">{{ __('Start Vocabulartest') }}</a>
+        <a href="{{ route('book.ask', ['book' => $book, 'back' => request()->fullUrl]) }}" role="button" class="contrast">{{ __('Start Vocabulartest') }}</a>
 
         <a href="{{ route('book.section.index', $book) }}" role="button">{{ __('Sections') }}</a>
 

@@ -5,7 +5,7 @@
     </h1>
 
     <article>
-        <a role="button" href="{{ route('book.ask', $book) }}" class="contrast">{{ __('Start Vocabulartest') }}</a>
+        <a role="button" href="{{ route('book.ask', ['book' => $book, 'back' => request()->fullUrl]) }}" class="contrast">{{ __('Start Vocabulartest') }}</a>
         <a role="button" href="{{ route('book.section.create', compact('book')) }}">{{ __('Create Section') }}</a>
     </article>
 

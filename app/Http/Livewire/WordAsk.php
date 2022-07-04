@@ -13,7 +13,7 @@ use Livewire\Component;
 
 class WordAsk extends Component
 {
-    public $words_to_ask = 15;
+    public $words_to_ask = 10;
 
     public $book;
     public $section;
@@ -51,8 +51,6 @@ class WordAsk extends Component
             $words = Word::where('book_id', $this->book->id)->limit($this->words_to_ask)->inRandomOrder()->get();
         }
 
-        $this->words_to_ask = count($words);
-
         $old_words = $words;
         $words = [];
         $count = 0;
@@ -68,6 +66,7 @@ class WordAsk extends Component
 
         $this->now = compact('words');
         $this->words = $words;
+        $this->words_to_ask = count($this->words);
     }
 
     public function loadStep(int $step){

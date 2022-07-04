@@ -1,33 +1,33 @@
 <x-app-layout>
-    <h1>Abfrage <a>#{{ $ask->id }}</a></h1>
+    <h1>{{ __('Test Results') }} <a>#{{ $ask->id }}</a></h1>
 
     <article>
         <header>
-            Informationen
+            {{ __('Informations') }}
         </header>
 
         <table>
             <tr>
-                <th>Buch</th>
-                <td>{{ $ask->book->name }} <a href="{{ route('book.show', $ask->book) }}">Buch öffnen</a></td>
+                <th>{{ __('Book') }}</th>
+                <td>{{ $ask->book->name }} <a href="{{ route('book.show', $ask->book) }}">{{ __('Open Book') }}</a></td>
             </tr>
             <tr>
-                <th>Abfrage war am</th>
+                <th>{{ __('Test Date') }}</th>
                 <td><span data-tooltip="{{ $ask->day->diffForHumans() }}">{{ $ask->day }}</span></td>
             </tr>
         </table>
     </article>
 
     <article>
-        <header>Ergebnisse</header>
+        <header>{{ __('Results') }}</header>
 
         <table>
             <thead>
                 <tr>
-                    <th>Wort</th>
-                    <th>Score zuvor</th>
-                    <th>Jetziger Score</th>
-                    <th>Differenz</th>
+                    <th>{{ __('Word') }}</th>
+                    <th>{{ __('Score before') }}</th>
+                    <th>{{ __('Score after') }}</th>
+                    <th>{{ __('Difference') }}</th>
                 </tr>
             </thead>
             <tbody>

@@ -6,7 +6,7 @@
     </h1>
 
     <article>
-        <a role="button" href="{{ route('book.ask', ['book' => $book, 'section' => $section]) }}" class="contrast">{{ __('Start Vocabulartest') }}</a>
+        <a role="button" href="{{ route('book.ask', ['book' => $book, 'section' => $section, 'back' => request()->fullUrl]) }}" class="contrast">{{ __('Start Vocabulartest') }}</a>
         <a href="{{ route('book.section.word.create', compact('book', 'section')) }}" role="button">{{ __('Add Word') }}</a>
     </article>
 

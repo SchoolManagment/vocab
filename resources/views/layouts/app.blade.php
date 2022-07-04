@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>{{ config('app.name', 'Vocab Trainer') }}</title>
 
-    <link rel="stylesheet" href="{{ asset('css/tabler-icons.min.css') }}">
+    <link rel="stylesheet" href="https://unpkg.com/@tabler/icons@latest/iconfont/tabler-icons.min.css">
     <link rel="stylesheet" href="{{ asset('css/pico.min.css') }}">
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
     <link rel="stylesheet" href="{{ asset('css/notiflix.min.css') }}">
