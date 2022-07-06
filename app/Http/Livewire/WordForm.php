@@ -4,7 +4,7 @@ namespace App\Http\Livewire;
 
 use App\Models\Book;
 use App\Models\Score;
-use App\Models\Section;
+use App\Models\Chapter;
 use App\Models\Word;
 use Livewire\Component;
 
@@ -15,7 +15,7 @@ class WordForm extends Component
     public $translations = [];
 
     public $model = null;
-    public $section;
+    public $chapter;
     public $book;
 
     public $edit;
@@ -29,7 +29,7 @@ class WordForm extends Component
         'translations' => 'nullable|array',
     ];
 
-    public function mount(Book $book, Section $section, Word $word = null, bool $edit = false){
+    public function mount(Book $book, Chapter $chapter, Word $word = null, bool $edit = false){
         $this->word = request()->word;
         $this->other_words = json_decode(request()->other_words) ?? [];
         $this->translations = json_decode(request()->translations) ?? [];
@@ -39,7 +39,7 @@ class WordForm extends Component
         }
 
         $this->book = $book;
-        $this->section = $section;
+        $this->chapter = $chapter;
     }
 
     public function updated($propertyName){
@@ -68,14 +68,14 @@ class WordForm extends Component
             $this->model->update($this->validate());
         } else {
             $this->model = Word::create(array_merge($this->validate(), [
-                'section_id' => $this->section->id,
+                'chapter_id' => $this->chapter->id,
                 'book_id' => $this->book->id,
                 'user_id' => auth()->id(),
             ]));
 
             Score::create([
                 'word_id' => $this->model->id,
-                'section_id' => $this->section->id,
+                'chapter_id' => $this->chapter->id,
                 'book_id' => $this->book->id,
                 'user_id' => auth()->id(),
                 'score' => 1
@@ -87,16 +87,16 @@ class WordForm extends Component
         $this->saver();
 
         if ($this->edit) {
-            return redirect()->route('book.section.word.show', [
+            return redirect()->route('book.chapter.word.show', [
                 'book' => $this->book,
-                'section' => $this->section,
+                'chapter' => $this->chapter,
                 'word' => $this->model,
             ])->with('success', "Wort {$this->model->word} aktualisiert.");
         }
 
-        return redirect()->route('book.section.word.show', [
+        return redirect()->route('book.chapter.word.show', [
             'book' => $this->book,
-            'section' => $this->section,
+            'chapter' => $this->chapter,
             'word' => $this->model,
         ])->with('success', "Wort {$this->model->word} erstellt");
     }

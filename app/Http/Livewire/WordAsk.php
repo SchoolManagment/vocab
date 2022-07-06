@@ -6,7 +6,7 @@ use App\Models\{
     Ask,
     Book,
     Score,
-    Section,
+    Chapter,
     Word
 };
 use Livewire\Component;
@@ -16,7 +16,7 @@ class WordAsk extends Component
     public $words_to_ask = 10;
 
     public $book;
-    public $section;
+    public $chapter;
     public $words;
 
     public $now = [];
@@ -37,7 +37,7 @@ class WordAsk extends Component
 
     public function mount(Book $book){
         $this->book = $book;
-        $this->section = (request()->has('section')) ? Section::find(request()->get('section')) : null;
+        $this->chapter = (request()->has('chapter')) ? Chapter::find(request()->get('chapter')) : null;
 
         $this->init();
         $this->loadStep(1);
@@ -45,7 +45,12 @@ class WordAsk extends Component
 
     private function init(){
         $scores = Score::where('book_id', $this->book->id)->inRandomOrder()->orderBy('score')->limit($this->words_to_ask)->pluck('word_id');
-        $words = Word::whereIn('id', $scores)->limit($this->words_to_ask)->get();
+
+        if (is_null($this->chapter) && !$this->chapter instanceof Chapter) {
+            $words = Word::whereIn('id', $scores)->limit($this->words_to_ask)->get();
+        } else {
+            $words = Word::whereIn('id', $scores)->where('chapter_id', $this->chapter->id)->limit($this->words_to_ask)->get();
+        }
 
         if (count($words) == 0) {
             $words = Word::where('book_id', $this->book->id)->limit($this->words_to_ask)->inRandomOrder()->get();

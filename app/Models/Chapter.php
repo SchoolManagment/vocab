@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Section extends Model
+class Chapter extends Model
 {
     use HasFactory;
 
@@ -16,7 +16,7 @@ class Section extends Model
     ];
 
     public function parent(){
-        return $this->belongsTo(Section::class, 'id', 'parent_id');
+        return $this->belongsTo(Chapter::class, 'id', 'parent_id');
     }
 
     public function book(){

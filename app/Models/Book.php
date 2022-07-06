@@ -20,8 +20,8 @@ class Book extends Model
         return $this->belongsTo(User::class);
     }
 
-    public function sections(){
-        return $this->hasMany(Section::class);
+    public function chapters(){
+        return $this->hasMany(Chapter::class);
     }
 
     public function lang(string $param){

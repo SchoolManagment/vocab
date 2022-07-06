@@ -3,10 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Book;
-use App\Models\Section;
+use App\Models\Chapter;
 use Illuminate\Http\Request;
 
-class SectionController extends Controller
+class ChapterController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,7 +16,7 @@ class SectionController extends Controller
      */
     public function index(Book $book)
     {
-        return view('section.index', compact('book'));
+        return view('chapter.index', compact('book'));
     }
 
     /**
@@ -27,7 +27,7 @@ class SectionController extends Controller
      */
     public function create(Book $book)
     {
-        return view('section.create', compact('book'));
+        return view('chapter.create', compact('book'));
     }
 
     /**
@@ -43,36 +43,36 @@ class SectionController extends Controller
             'name' => ['required', 'string', 'max:255'],
         ]);
 
-        $section = Section::create([
+        $chapter = Chapter::create([
             'name' => $request->post('name'),
             'book_id' => $book->id,
         ]);
 
-        return redirect()->route('book.section.show', compact('book', 'section'))->with('success', __('Section :section created', ['section' => $section->name]));
+        return redirect()->route('book.chapter.show', compact('book', 'chapter'))->with('success', __('Chapter :chapter created', ['chapter' => $chapter->name]));
     }
 
     /**
      * Display the specified resource.
      *
      * @param  \App\Models\Book  $book
-     * @param  \App\Models\Section  $section
+     * @param  \App\Models\Chapter  $chapter
      * @return \Illuminate\Http\Response
      */
-    public function show(Book $book, Section $section)
+    public function show(Book $book, Chapter $chapter)
     {
-        return view('section.show', compact('book', 'section'));
+        return view('chapter.show', compact('book', 'chapter'));
     }
 
     /**
      * Show the form for editing the specified resource.
      *
      * @param  \App\Models\Book  $book
-     * @param  \App\Models\Section  $section
+     * @param  \App\Models\Chapter  $chapter
      * @return \Illuminate\Http\Response
      */
-    public function edit(Book $book, Section $section)
+    public function edit(Book $book, Chapter $chapter)
     {
-        return view('section.edit', compact('book', 'section'));
+        return view('chapter.edit', compact('book', 'chapter'));
     }
 
     /**
@@ -80,34 +80,34 @@ class SectionController extends Controller
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  \App\Models\Book  $book
-     * @param  \App\Models\Section  $section
+     * @param  \App\Models\Chapter  $chapter
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Book $book, Section $section)
+    public function update(Request $request, Book $book, Chapter $chapter)
     {
         $request->validate([
             'name' => ['required', 'string', 'max:255'],
         ]);
 
-        $section->update([
+        $chapter->update([
             'name' => $request->post('name'),
         ]);
 
-        return redirect()->route('book.section.show', compact('book', 'section'))->with('success', __('Section :section updated', ['section' => $section->name]));
+        return redirect()->route('book.chapter.show', compact('book', 'chapter'))->with('success', __('Chapter :chapter updated', ['chapter' => $chapter->name]));
     }
 
     /**
      * Remove the specified resource from storage.
      *
      * @param  \App\Models\Book  $book
-     * @param  \App\Models\Section  $section
+     * @param  \App\Models\Chapter  $chapter
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Book $book, Section $section)
+    public function destroy(Book $book, Chapter $chapter)
     {
-        $section->words()->delete();
-        $section->delete();
+        $chapter->words()->delete();
+        $chapter->delete();
 
-        return redirect()->route('book.section.index', $book)->with('success', __('Section deleted.'));
+        return redirect()->route('book.chapter.index', $book)->with('success', __('Chapter deleted.'));
     }
 }

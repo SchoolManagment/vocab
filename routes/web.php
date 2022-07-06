@@ -2,7 +2,7 @@
 
 use App\Http\Controllers\{
     BookController,
-    SectionController,
+    ChapterController,
     AuthController,
     WordController
 };
@@ -40,8 +40,8 @@ Route::middleware('auth')->group(function () {
         return view('results.show', compact('ask'));
     })->name('result');
 
-    Route::resource('book.section.word', WordController::class)->except(['store', 'update']);
-    Route::resource('book.section', SectionController::class);
+    Route::resource('book.chapter.word', WordController::class)->except(['store', 'update']);
+    Route::resource('book.chapter', ChapterController::class);
     Route::resource('book', BookController::class);
 
     Route::get('profile', [\App\Http\Controllers\ProfileController::class, 'show'])->name('profile');

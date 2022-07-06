@@ -1,6 +1,6 @@
 <?php
 
-use App\Models\{Book, Section};
+use App\Models\{Book, Chapter};
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -14,11 +14,11 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('sections', function (Blueprint $table) {
+        Schema::create('chapters', function (Blueprint $table) {
             $table->id();
             $table->string('name');
             $table->foreignIdFor(Book::class);
-            $table->foreignIdFor(Section::class, 'parent_id')->nullable();
+            $table->foreignIdFor(Chapter::class, 'parent_id')->nullable();
             $table->timestamps();
         });
     }
@@ -30,6 +30,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('sections');
+        Schema::dropIfExists('chapters');
     }
 };

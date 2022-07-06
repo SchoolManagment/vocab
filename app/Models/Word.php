@@ -13,7 +13,7 @@ class Word extends Model
         'word',
         'other_words',
         'translations',
-        'section_id',
+        'chapter_id',
         'book_id'
     ];
 
@@ -29,8 +29,8 @@ class Word extends Model
         });
     }
 
-    public function section(){
-        return $this->belongsTo(Section::class);
+    public function chapter(){
+        return $this->belongsTo(Chapter::class);
     }
 
     public function book(){
