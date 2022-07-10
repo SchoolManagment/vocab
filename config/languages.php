@@ -1,8 +1,9 @@
 <?php
 
 return [
-    'en' => 'Englisch',
-    'lat' => 'Latein',
-    'de' => 'Deutsch',
-    'fr' => 'Französisch',
+    'en' => 'English',
+    'de' => 'German',
+    'lat' => 'Latin',
+    'fr' => 'France',
+    'es' => 'Espanol',
 ];

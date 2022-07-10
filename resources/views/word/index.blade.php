@@ -1,13 +1,13 @@
-<x-app-layout :back="route('book.section.show', compact('book', 'section'))">
+<x-app-layout :back="route('book.chapter.show', compact('book', 'chapter'))">
     <h1>
-        {{ __('Book') }} <a href="{{ route('book.show', $book) }}">{{ $book->name }}</a> -
-        {{ __('Section') }} <a href="{{ route('book.section.show', compact('book', 'section')) }}">{{ $section->name }}</a> -
-        {{ __('Words') }}
+        {!! __('book.show', ['book' => '<a href="'. route('book.show', compact('book')) .'">'. $book->name .'</a>']) !!} -
+        {!! __('chapter.show', ['chapter' => '<a href="'. route('book.chapter.show', compact('book', 'chapter')) .'">'. $chapter->name .'</a>']) !!} -
+        {{ __('word.index') }}
     </h1>
 
     <article>
-        <a role="button" href="{{ route('book.ask', ['book' => $book, 'section' => $section, 'back' => request()->fullUrl]) }}" class="contrast">{{ __('Start Vocabulartest') }}</a>
-        <a href="{{ route('book.section.word.create', compact('book', 'section')) }}" role="button">{{ __('Add Word') }}</a>
+        <a role="button" href="{{ route('book.ask', ['book' => $book, 'chapter' => $chapter, 'back' => request()->fullUrl]) }}" class="contrast">{{ __('vocab.start') }}</a>
+        <a href="{{ route('book.chapter.word.create', compact('book', 'chapter')) }}" role="button">{{ __('word.create') }}</a>
     </article>
 
     <article>
@@ -15,21 +15,21 @@
             <thead>
                 <tr>
                     <th scope="col">#</th>
-                    <th scope="col">{{ __('Word') }} <small>({{ $book->lang('from') }})</small></th>
-                    <th scope="col">{{ __('Other meanings') }}</th>
-                    <th scope="col">{{ __('Translations') }} <small>({{ $book->lang('to') }})</small></th>
+                    <th scope="col">{{ __('word.word') }} <small>({{ $book->lang('from') }})</small></th>
+                    <th scope="col">{{ __('word.others') }}</th>
+                    <th scope="col">{{ __('word.trans') }} <small>({{ $book->lang('to') }})</small></th>
                     <th scope="col"></th>
                 </tr>
             </thead>
             <tbody>
-                @forelse ($section->words as $word)
+                @forelse ($chapter->words as $word)
                     <tr>
                         <th scope="row">{{ $word->id }}</th>
                         <td>{{ $word->word }}</td>
                         <td>{{ $word->arrayToList($word->other_words ?? []) }}</td>
                         <td>{{ $word->arrayToList($word->translations ?? []) }}</td>
                         <td>
-                            <a href="{{ route('book.section.word.show', compact('book', 'section', 'word')) }}">{{ __('Show') }}</a>
+                            <a href="{{ route('book.chapter.word.show', compact('book', 'chapter', 'word')) }}">{{ __('Showing') }}</a>
                         </td>
                     </tr>
                 @empty

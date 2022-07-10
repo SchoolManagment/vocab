@@ -26,7 +26,7 @@ class WordForm extends Component
     protected $rules = [
         'word' => 'required|string',
         'other_words' => 'nullable|array',
-        'translations' => 'nullable|array',
+        'translations.*' => 'required|string',
     ];
 
     public function mount(Book $book, Chapter $chapter, Word $word = null, bool $edit = false){
@@ -64,6 +64,10 @@ class WordForm extends Component
     }
 
     public function saver(){
+        foreach($this->translations as $key => $value){
+            $this->translations[$key] = urlencode($value);
+        }
+
         if ($this->edit) {
             $this->model->update($this->validate());
         } else {

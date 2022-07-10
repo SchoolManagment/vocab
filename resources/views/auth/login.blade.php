@@ -1,11 +1,11 @@
 <x-app-layout>
     <form action="{{ route('login') }}" method="post">
         @csrf
-        <h1>Login</h1>
+        <h1>{{ __('auth-page.login') }}</h1>
 
-        <x-input type="email" name="email" label="E-Mail" placeholder="E-Mail" autofocus required />
-        <x-input type="password" name="password" label="Passwort" placeholder="Passwort" required value="" />
+        <x-input type="email" name="email" label="{{ __('auth-page.email') }}" placeholder="{{ __('auth-page.email') }}" autofocus required />
+        <x-input type="password" name="password" label="{{ __('auth-page.password') }}" placeholder="{{ __('auth-page.password') }}" required value="" />
 
-        <button type="submit">Login</button>
+        <button type="submit">{{ __('auth-page.login') }}</button>
     </form>
 </x-app-layout>

@@ -1,15 +1,15 @@
 <div>
-    <h1>{{ __('Test') }}</h1>
+    <h1>{{ __('vocab.itle') }}</h1>
 
     @if ($view == 'ask')
         <progress value="{{ $step - 1 }}" max="{{ $words_to_ask }}"></progress>
         <article>
             <header>
-                <h3 style="margin-bottom: 0">{{ __('Word') }}: {{ $word->word }}</h3>
+                <h3 style="margin-bottom: 0">{{ __('word.word') }}: {{ $word->word }}</h3>
                 <div style="text-align: right;">
-                    {{ __('Score') }}: {{ $word->score->score }} |
-                    <a href="{{ route('book.section.word.show', ['book' => $word->book_id, 'section' => $word->section_id, 'word' => $word->id]) }}" target="_blank">
-                        {{ __('Open Word') }}
+                    {{ __('word.score') }}: {{ $word->score->score }} |
+                    <a href="{{ route('book.chapter.word.show', ['book' => $word->book_id, 'chapter' => $word->chapter_id, 'word' => $word->id]) }}" target="_blank">
+                        {{ __('word.open-word') }}
                     </a>
                 </div>
             </header>
@@ -22,14 +22,13 @@
                 <a href="javascript:void();" wire:click="check" wire:loading.attr="disabled" role="button">{{ __('Check') }}</a>
                 <a
                     href="javascript:void();"
-                    wire:click="nextWord"
                     wire:loading.attr="disabled"
                     class="contrast"
-                    @if($word->score->score <= 1) disabled data-tooltip="{{ __('You can only skip words above a score of 2.') }}"
-                    @else data-tooltip="{{ __('If you skip a word, one point will be deducted from the score.') }}" @endif
+                    @if($word->score->score <= 1) data-tooltip="{{ __('vocab.ask.skip-msg-disabled') }}"
+                    @else wire:click="nextWord" data-tooltip="{{ __('vocab.ask.skip-msg') }}" @endif
                     role="button"
                 >
-                    {{ __('Skip') }}
+                    {{ __('vocab.ask.skip') }}
                 </a>
             </footer>
         </article>
@@ -40,7 +39,7 @@
 
                 <ul>
                     @foreach ($word->other_words ?? [] as $other_word)
-                        <li>{{ $other_word }}</li>
+                        <li>{{ urldecode($other_word) }}</li>
                     @endforeach
                 </ul>
             </article>
@@ -65,7 +64,7 @@
                 <tbody>
                     @foreach ($translations as $key => $value)
                         <tr>
-                            <td>{{ $key }}</td>
+                            <td>{{ urldecode($key) }}</td>
                             <td>{{ $value }}</td>
                         </tr>
                     @endforeach
@@ -85,15 +84,15 @@
         <progress style="color: green" value="{{ $step }}" max="{{ $words_to_ask }}"></progress>
         <article>
             <header>
-                <h3 style="margin-bottom: 0">{{ __('Results') }}</h3>
+                <h3 style="margin-bottom: 0">{{ __('vocab.results.title') }}</h3>
             </header>
 
             <table>
                 <thead>
                     <tr>
-                        <th>{{ __('Word') }}</th>
-                        <th>{{ __('Score before') }}</th>
-                        <th>{{ __('Score after') }}</th>
+                        <th>{{ __('vocab.results.word') }}</th>
+                        <th>{{ __('vocab.results.score_before') }}</th>
+                        <th>{{ __('vocab.results.score_after') }}</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -113,8 +112,8 @@
 
 
             <footer style="text-align: right">
-                <a href="{{ request()->back ?? route('book.show', $book) }}" class="contrast" role="button">{{ __('End test') }}</a>
-                <a href="{{ route('book.ask', $book) }}" role="button">{{ __('Make a new') }}</a>
+                <a href="{{ request()->back ?? route('book.show', $book) }}" class="contrast" role="button">{{ __('vocab.results.btn.end') }}</a>
+                <a href="{{ route('book.ask', $book) }}" role="button">{{ __('vocab.results.btn.new') }}</a>
             </footer>
         </article>
     @endif

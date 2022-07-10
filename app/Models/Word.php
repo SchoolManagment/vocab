@@ -48,6 +48,6 @@ class Word extends Model
             $return .= $value.$seperator;
         }
 
-        return rtrim($return, $seperator);
+        return urldecode(rtrim($return, $seperator));
     }
 }

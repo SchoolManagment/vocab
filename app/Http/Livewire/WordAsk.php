@@ -107,7 +107,7 @@ class WordAsk extends Component
         // dd($this->words);
         $check = true;
         foreach($this->translations as $key => $value){
-            if ($key != $value) {
+            if (urldecode($key) != $value) {
                 $check = false;
                 break;
             }
